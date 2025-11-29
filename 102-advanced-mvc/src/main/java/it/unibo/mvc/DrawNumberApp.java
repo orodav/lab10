@@ -1,6 +1,7 @@
 package it.unibo.mvc;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,7 +28,18 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
             view.setObserver(this);
             view.start();
         }
-        this.model = new DrawNumberImpl(MIN, MAX, ATTEMPTS);
+        //this.model = new DrawNumberImpl(MIN, MAX, ATTEMPTS);
+        Configuration config;
+        try {
+            config = new ConfigurationLoader().configurationLoad();
+        } catch (IOException e) {
+            config = new Configuration.Builder()
+                .setMin(MIN)
+                .setMax(MAX)
+                .setAttempts(ATTEMPTS)
+                .build();
+        }
+        this.model = new DrawNumberImpl(config.getMin(), config.getMax(), config.getAttempts());
     }
 
     @Override

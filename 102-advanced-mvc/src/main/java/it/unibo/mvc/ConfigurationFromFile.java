@@ -5,11 +5,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class ConfigurationLoader {
+public class ConfigurationFromFile {
         
     private static final String PATH = "config.yml";
 
-    public Configuration configurationLoad() throws IOException {
+    public Configuration configSet() throws IOException {
 
         final InputStream is = getClass().getClassLoader().getResourceAsStream(PATH);
         if (is == null) {

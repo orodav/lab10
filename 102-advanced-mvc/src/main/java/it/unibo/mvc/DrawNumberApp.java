@@ -31,7 +31,7 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
         //this.model = new DrawNumberImpl(MIN, MAX, ATTEMPTS);
         Configuration config;
         try {
-            config = new ConfigurationLoader().configurationLoad();
+            config = new ConfigurationFromFile().configSet();
         } catch (IOException e) {
             config = new Configuration.Builder()
                 .setMin(MIN)
